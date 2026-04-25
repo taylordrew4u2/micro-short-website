@@ -1,0 +1,654 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Oh Shit, Did We Just Kill a Guy?</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<meta name="description" content="Oh Shit, Did We Just Kill a Guy? — a short film directed by Oscar Monroy." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+
+<style>
+  :root {
+    --fg: #f3efe7;
+    --fg-dim: rgba(243,239,231,0.72);
+    --rule: rgba(243,239,231,0.22);
+    --type-display: 'Anton', 'Oswald', 'Impact', 'Helvetica Neue', sans-serif;
+    --type: 'Oswald', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --type-ui: 'Oswald', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --vignette: 0.42;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    height: 100%;
+    background: #000;
+    color: var(--fg);
+    font-family: var(--type);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow: hidden;
+  }
+  body { overscroll-behavior: none; }
+
+  a { color: inherit; text-decoration: none; }
+
+  /* ========== STAGE ========== */
+  .stage {
+    position: fixed; inset: 0;
+    overflow: hidden;
+  }
+
+  /* Stills — one per page, only the active one is visible */
+  .still {
+    position: absolute; inset: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transition: opacity 700ms ease;
+    will-change: opacity;
+  }
+  .still.is-active { opacity: 1; }
+
+  /* Vignette + slight darken so title + nav read */
+  .stage::after {
+    content: "";
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.18) 18%, rgba(0,0,0,0.18) 62%, rgba(0,0,0,0.62) 100%),
+      radial-gradient(120% 90% at 50% 50%, rgba(0,0,0,0) 35%, rgba(0,0,0,calc(var(--vignette))) 100%);
+    pointer-events: none;
+  }
+
+  /* ========== TOP NAV (IMDb-credits-spirit, original design) ========== */
+  .topbar {
+    position: relative;
+    z-index: 5;
+    display: flex;
+    justify-content: center;
+    padding: 22px 28px 0;
+  }
+  .topbar-inner {
+    display: flex;
+    align-items: center;
+    gap: clamp(18px, 3vw, 44px);
+    padding: 12px 22px;
+    border-bottom: 1px solid var(--rule);
+    width: 100%;
+    max-width: 980px;
+    justify-content: center;
+  }
+  .nav-link {
+    font-family: var(--type-ui);
+    font-weight: 500;
+    font-size: 12.5px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--fg-dim);
+    padding: 4px 2px;
+    transition: color 180ms ease, transform 180ms ease;
+    cursor: pointer;
+    background: none; border: 0;
+    white-space: nowrap;
+  }
+  .nav-link:hover { color: var(--fg); }
+  .nav-link.is-active {
+    color: var(--fg);
+    border-bottom: 1px solid var(--fg);
+  }
+  .nav-sep {
+    width: 1px; height: 11px;
+    background: var(--rule);
+    display: inline-block;
+  }
+
+  /* ========== CENTER COLUMN ========== */
+  .center {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 70px 24px 140px;
+    z-index: 4;
+    pointer-events: none;
+  }
+  .center > * { pointer-events: auto; }
+
+  .eyebrow {
+    font-family: var(--type-ui);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 14px;
+    letter-spacing: 0.18em;
+    color: var(--fg-dim);
+    margin: 0 0 14px;
+    text-transform: lowercase;
+  }
+
+  .title {
+    margin: 0;
+    font-family: var(--type-display);
+    font-weight: 400;
+    font-size: clamp(28px, 5.4vw, 86px);
+    line-height: 1.0;
+    letter-spacing: 0.005em;
+    text-transform: uppercase;
+    text-shadow: 0 2px 28px rgba(0,0,0,0.65);
+    white-space: nowrap;
+  }
+  .title em { font-style: normal; font-weight: 400; }
+  .title .br { display: inline; }
+  .title .br::before { content: " "; }
+  /* desktop: one line. tablet/mobile: break only ONCE between "Just" and "Kill" */
+  @media (max-width: 900px) {
+    .title {
+      white-space: normal;
+      font-size: clamp(32px, 8vw, 64px);
+      max-width: 11ch;
+      line-height: 1.02;
+    }
+    /* The first .br (between "Oh Shit," and "Did We Just") stays a space.
+       The second .br (between "Did We Just" and "Kill a Guy?") becomes a real line break. */
+    .title .br:nth-of-type(1) { display: inline; }
+    .title .br:nth-of-type(1)::before { content: " "; }
+    .title .br:nth-of-type(2) { display: block; }
+    .title .br:nth-of-type(2)::before { content: ""; }
+  }
+
+  .subtitle {
+    margin: 36px 0 0;
+    font-family: var(--type-ui);
+    font-weight: 400;
+    font-size: clamp(13px, 1.2vw, 16px);
+    letter-spacing: 0.36em;
+    text-transform: uppercase;
+    color: var(--fg-dim);
+  }
+  .title { padding-bottom: 4px; }
+
+  /* Page-specific content (cast/crew/awards/contact) */
+  .page-content {
+    margin-top: 28px;
+    max-width: 760px;
+    width: 100%;
+    color: var(--fg);
+  }
+  .roster {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0,1fr));
+    gap: 6px 48px;
+    font-family: var(--type);
+    font-size: clamp(15px, 1.35vw, 20px);
+    line-height: 1.55;
+  }
+  .roster .role {
+    font-style: italic;
+    color: var(--fg-dim);
+    font-weight: 300;
+  }
+  .roster .name {
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 500;
+    font-size: 0.92em;
+  }
+  .roster .row {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(243,239,231,0.10);
+  }
+  .roster .row:last-child { border-bottom: 0; }
+
+  .contact-block {
+    display: flex; flex-direction: column; align-items: center;
+    gap: 10px;
+    font-family: var(--type);
+    font-size: clamp(15px, 1.3vw, 19px);
+  }
+  .contact-block a {
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 2px;
+    transition: border-color 180ms ease;
+  }
+  .contact-block a:hover { border-color: var(--fg); }
+  .contact-block .label {
+    font-style: italic;
+    color: var(--fg-dim);
+    font-size: 12px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  /* ========== LAURELS ========== */
+  .laurels {
+    position: absolute;
+    left: 0; right: 0;
+    bottom: 56px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-end;
+    gap: clamp(14px, 2.6vw, 36px);
+    padding: 0 32px;
+    z-index: 3;
+    transition: bottom 300ms ease, gap 300ms ease, padding 300ms ease;
+  }
+  .laurel {
+    height: clamp(54px, 7.2vh, 84px);
+    width: auto;
+    opacity: 0.95;
+    transition: opacity 200ms ease, transform 200ms ease, height 300ms ease;
+    cursor: pointer;
+  }
+  .laurel:hover { opacity: 1; transform: translateY(-2px); }
+
+  /* AWARDS layout: title shrinks + moves up, laurels fill canvas as a thoughtful grid */
+  body.page-awards .center {
+    justify-content: flex-start;
+    padding-top: 70px;
+  }
+  body.page-awards .title {
+    font-size: clamp(16px, 2vw, 24px) !important;
+    line-height: 1.05;
+    white-space: nowrap;
+  }
+  body.page-awards .eyebrow { font-size: 10px; margin-bottom: 6px; }
+  body.page-awards .subtitle { display: none; }
+  body.page-awards .laurels {
+    position: absolute;
+    top: 140px;
+    bottom: 36px;
+    left: 0; right: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 1fr;
+    gap: clamp(10px, 2vw, 32px);
+    padding: 0 clamp(32px, 6vw, 120px);
+    align-items: center;
+    justify-items: center;
+    align-content: center;
+  }
+  body.page-awards .laurel-link {
+    display: flex; align-items: center; justify-content: center;
+    width: 100%; height: 100%;
+  }
+  body.page-awards .laurel {
+    height: auto;
+    width: 100%;
+    max-height: 100%;
+    max-width: 200px;
+    object-fit: contain;
+  }
+  body.page-awards .footer-line { display: none; }
+  /* awards on shorter / narrower screens */
+  @media (max-width: 760px) {
+    body.page-awards .laurels {
+      grid-template-columns: repeat(3, 1fr);
+      top: 120px;
+      bottom: 28px;
+      gap: 8px;
+      padding: 0 14px;
+    }
+    body.page-awards .center { padding-top: 66px; }
+    body.page-awards .title { font-size: 14px !important; white-space: normal; }
+    body.page-awards .laurel { max-width: 140px; }
+  }
+
+  /* ========== FOOTER LINE ========== */
+  .footer-line {
+    position: absolute;
+    left: 0; right: 0;
+    bottom: 18px;
+    text-align: center;
+    z-index: 3;
+    font-family: var(--type-ui);
+    font-style: italic;
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: rgba(243,239,231,0.55);
+  }
+
+  /* ========== TWEAKS HOST ========== */
+  #tweaks-root { position: fixed; right: 18px; bottom: 18px; z-index: 50; }
+
+  /* ========== RESPONSIVE ========== */
+  @media (max-width: 720px) {
+    .topbar { padding: 14px 12px 0; }
+    .topbar-inner { gap: 14px; padding: 10px 8px; }
+    .nav-link { font-size: 11px; letter-spacing: 0.24em; }
+    .nav-sep { display: none; }
+    .laurels {
+      bottom: 84px;
+      gap: 10px 14px;
+      padding: 0 16px;
+    }
+    .laurel { height: 48px; }
+    .footer-line { bottom: 56px; font-size: 10px; }
+    .roster {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+    .center { padding: 0 18px; }
+    .page-content { margin-top: 18px; }
+  }
+  @media (max-height: 640px) {
+    .laurel { height: 46px; }
+    .laurels { bottom: 44px; }
+    .footer-line { bottom: 14px; }
+  }
+  @media (max-width: 420px) {
+    .laurels { gap: 8px 10px; }
+    .laurel { height: 40px; }
+  }
+
+  /* keep nav from breaking on narrow */
+  @media (max-width: 540px) {
+    .topbar-inner {
+      overflow-x: auto;
+      justify-content: flex-start;
+      -webkit-overflow-scrolling: touch;
+    }
+    .topbar-inner::-webkit-scrollbar { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="stage" id="stage">
+  <div class="still" data-page="home"     style="background-image:url('stills/still-home.png');"></div>
+  <div class="still" data-page="cast"     style="background-image:url('stills/still-cast.png');"></div>
+  <div class="still" data-page="crew"     style="background-image:url('stills/still-crew.png');"></div>
+  <div class="still" data-page="awards"   style="background-image:url('stills/still-awards.png');"></div>
+  <div class="still" data-page="contact"  style="background-image:url('stills/still-contact.png');"></div>
+</div>
+
+<nav class="topbar" aria-label="Primary">
+  <div class="topbar-inner">
+    <a class="nav-link" href="#home"    data-nav="home">Film</a>
+    <span class="nav-sep" aria-hidden="true"></span>
+    <a class="nav-link" href="#cast"    data-nav="cast">Cast</a>
+    <span class="nav-sep" aria-hidden="true"></span>
+    <a class="nav-link" href="#crew"    data-nav="crew">Crew</a>
+    <span class="nav-sep" aria-hidden="true"></span>
+    <a class="nav-link" href="#awards"  data-nav="awards">Awards</a>
+    <span class="nav-sep" aria-hidden="true"></span>
+    <a class="nav-link" href="#contact" data-nav="contact">Contact</a>
+  </div>
+</nav>
+
+<main class="center" id="center">
+  <!-- content rendered by JS -->
+</main>
+
+<section class="laurels" id="laurels" aria-label="Festival laurels">
+  <!-- rendered by JS -->
+</section>
+
+<div class="footer-line">Created by Taylor Drew &nbsp;·&nbsp; Directed by Oscar Monroy &nbsp;·&nbsp; 2026</div>
+
+<div id="tweaks-root"></div>
+
+<!-- ============ DATA + APP ============ -->
+<script>
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "typeface": "Anton",
+  "vignette": 0.42,
+  "titleStyle": "italic-quiet",
+  "navAccent": "warm-white"
+}/*EDITMODE-END*/;
+
+// Festival laurels — clickable, link out
+const LAURELS = [
+  { src: "laurels/altff-winner.png",            alt: "AltFF Super Short — Winner — Best Writer (Spring 2026)", href: "https://filmfreeway.com/AltFFAlternativeFilmFestival" },
+  { src: "laurels/jersey-devil.png",            alt: "The Jersey Devil Film Festival — Official Selection",     href: "https://filmfreeway.com/TheJerseyDevilFilmFestival" },
+  { src: "laurels/lic-best-micro-short.png",    alt: "Long Island Cinema Festival — Best Micro Short 2026",     href: "https://filmfreeway.com/LongIslandCinemaFestival" },
+  { src: "laurels/altff-director.png",          alt: "AltFF Alternative Film Festival — Best Director Nominee 2026", href: "https://filmfreeway.com/AltFFAlternativeFilmFestival" },
+  { src: "laurels/altff-selection.png",         alt: "AltFF Alternative Film Festival — Official Selection 2026", href: "https://filmfreeway.com/AltFFAlternativeFilmFestival" },
+  { src: "laurels/east-village.png",            alt: "East Village New York Film Festival — Official Selection 2026", href: "https://filmfreeway.com/EastVillageNewYorkFilmFestival" },
+  { src: "laurels/giggle-shitz.png",            alt: "Giggle Shitz Film Festival — Official Selection",         href: "https://filmfreeway.com/GiggleShitzFilmFestival" },
+  { src: "laurels/lic-cinematographer.png",     alt: "Long Island Cinema Festival — Best Cinematographer 2026",  href: "https://filmfreeway.com/LongIslandCinemaFestival" },
+  { src: "laurels/lic-micro-short-nominee.png", alt: "Long Island Cinema Festival — Best Micro Short Nominee 2026", href: "https://filmfreeway.com/LongIslandCinemaFestival" },
+  { src: "laurels/lic-official-selection.png",  alt: "Long Island Cinema Festival — Official Selection 2026",   href: "https://filmfreeway.com/LongIslandCinemaFestival" },
+];
+
+const PAGES = {
+  home: {
+    eyebrow: "a micro short",
+    title: 'Oh Shit,<span class="br"></span>Did We Just<span class="br"></span>Kill a Guy?',
+    subtitle: "",
+    content: null
+  },
+  cast: {
+    eyebrow: "the cast",
+    title: 'Oh Shit,<span class="br"></span>Did We Just<span class="br"></span>Kill a Guy?',
+    subtitle: "Cast",
+    content: `
+      <div class="roster">
+        <div class="row"><span class="role">Starring</span><span class="name">Taylor Drew</span></div>
+        <div class="row"><span class="role">Starring</span><span class="name">Adiel Kay</span></div>
+        <div class="row"><span class="role">Featuring</span><span class="name">Evan Kash</span></div>
+      </div>`
+  },
+  crew: {
+    eyebrow: "the crew",
+    title: 'Oh Shit,<span class="br"></span>Did We Just<span class="br"></span>Kill a Guy?',
+    subtitle: "Crew",
+    content: `
+      <div class="roster">
+        <div class="row"><span class="role">Created by</span><span class="name">Taylor Drew</span></div>
+        <div class="row"><span class="role">Directed by</span><span class="name">Oscar Monroy</span></div>
+        <div class="row"><span class="role">Director of Photography</span><span class="name">Mike Cerisano</span></div>
+        <div class="row"><span class="role">Costume Design</span><span class="name">Taylor Drew</span></div>
+        <div class="row"><span class="role">Asst. Camera &amp; Grip</span><span class="name">Miguel Dusauzay</span></div>
+        <div class="row"><span class="role">Music</span><span class="name">Jared Bailey</span></div>
+      </div>`
+  },
+  awards: {
+    eyebrow: "selections &amp; awards",
+    title: 'Oh Shit,<span class="br"></span>Did We Just<span class="br"></span>Kill a Guy?',
+    subtitle: "Awards & Festivals",
+    content: null // laurels themselves are the content
+  },
+  contact: {
+    eyebrow: "for press &amp; bookings",
+    title: 'Oh Shit,<span class="br"></span>Did We Just<span class="br"></span>Kill a Guy?',
+    subtitle: "Contact",
+    content: `
+      <div class="contact-block">
+        <a href="https://filmfreeway.com/" target="_blank" rel="noopener">FilmFreeway</a>
+      </div>`
+  }
+};
+
+// ====== ROUTING ======
+function getPage() {
+  const h = (location.hash || "#home").replace("#","").toLowerCase();
+  return PAGES[h] ? h : "home";
+}
+
+function render(page) {
+  document.body.className = "page-" + page;
+  // stills
+  document.querySelectorAll(".still").forEach(el => {
+    el.classList.toggle("is-active", el.dataset.page === page);
+  });
+  // nav
+  document.querySelectorAll(".nav-link").forEach(el => {
+    el.classList.toggle("is-active", el.dataset.nav === page);
+  });
+  // center
+  const data = PAGES[page];
+  const center = document.getElementById("center");
+  center.innerHTML = `
+    <p class="eyebrow">${data.eyebrow}</p>
+    <h1 class="title">${data.title}</h1>
+    <p class="subtitle">${data.subtitle}</p>
+    ${data.content ? `<div class="page-content">${data.content}</div>` : ``}
+  `;
+  // laurels (always shown, but on Awards page they're the content)
+  const laurelsEl = document.getElementById("laurels");
+  laurelsEl.innerHTML = LAURELS.map(l => `
+    <a class="laurel-link" href="${l.href}" target="_blank" rel="noopener" aria-label="${l.alt}">
+      <img class="laurel" src="${l.src}" alt="${l.alt}" />
+    </a>
+  `).join("");
+}
+
+window.addEventListener("hashchange", () => render(getPage()));
+document.addEventListener("DOMContentLoaded", () => render(getPage()));
+
+// ====== TWEAKS ======
+let TWEAKS = { ...TWEAK_DEFAULTS };
+
+function applyTweaks() {
+  const r = document.documentElement;
+  const displayMap = {
+    "Anton":   "'Anton', 'Oswald', Impact, sans-serif",
+    "Oswald":  "'Oswald', 'Anton', Impact, sans-serif",
+    "Cormorant Garamond": "'Cormorant Garamond', Georgia, serif"
+  };
+  r.style.setProperty("--type-display", displayMap[TWEAKS.typeface] || displayMap["Anton"]);
+  r.style.setProperty("--type",         "'Oswald', 'Helvetica Neue', Helvetica, Arial, sans-serif");
+  r.style.setProperty("--type-ui",      "'Oswald', 'Helvetica Neue', Helvetica, Arial, sans-serif");
+  r.style.setProperty("--vignette", String(TWEAKS.vignette));
+
+  // accent for nav text
+  const fgMap = {
+    "warm-white": "#f3efe7",
+    "pure-white": "#ffffff",
+    "amber":      "#e7c98b"
+  };
+  r.style.setProperty("--fg", fgMap[TWEAKS.navAccent] || fgMap["warm-white"]);
+}
+applyTweaks();
+
+// ====== TWEAKS PANEL (vanilla) ======
+function buildTweaks() {
+  const root = document.getElementById("tweaks-root");
+  root.innerHTML = `
+    <div class="tw-panel" role="dialog" aria-label="Tweaks">
+      <div class="tw-head">
+        <span>Tweaks</span>
+        <button class="tw-close" aria-label="Close">×</button>
+      </div>
+      <div class="tw-body">
+        <label class="tw-row">
+          <span class="tw-label">Typeface</span>
+          <select data-key="typeface">
+            <option>Anton</option>
+            <option>Oswald</option>
+            <option>Cormorant Garamond</option>
+          </select>
+        </label>
+        <label class="tw-row">
+          <span class="tw-label">Vignette</span>
+          <input type="range" min="0" max="0.85" step="0.01" data-key="vignette" />
+        </label>
+        <label class="tw-row">
+          <span class="tw-label">Type tone</span>
+          <select data-key="navAccent">
+            <option value="warm-white">Warm white</option>
+            <option value="pure-white">Pure white</option>
+            <option value="amber">Amber</option>
+          </select>
+        </label>
+      </div>
+    </div>
+    <style>
+      .tw-panel {
+        font-family: 'Inter', system-ui, sans-serif;
+        background: rgba(14,12,10,0.92);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        color: #f3efe7;
+        border: 1px solid rgba(243,239,231,0.18);
+        width: 260px;
+        border-radius: 4px;
+        font-size: 12px;
+        box-shadow: 0 18px 60px rgba(0,0,0,0.5);
+        display: none;
+      }
+      .tw-panel.is-open { display: block; }
+      .tw-head {
+        display:flex; justify-content:space-between; align-items:center;
+        padding: 10px 12px;
+        border-bottom: 1px solid rgba(243,239,231,0.14);
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 13px;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+      }
+      .tw-close {
+        background: none; border: 0; color: inherit; font-size: 18px; cursor: pointer;
+        line-height: 1; padding: 0 4px;
+      }
+      .tw-body { padding: 10px 12px 14px; display: flex; flex-direction: column; gap: 12px; }
+      .tw-row { display: flex; flex-direction: column; gap: 6px; }
+      .tw-label {
+        font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+        color: rgba(243,239,231,0.6);
+      }
+      .tw-panel select, .tw-panel input[type=range] {
+        width: 100%;
+        background: rgba(243,239,231,0.06);
+        color: #f3efe7;
+        border: 1px solid rgba(243,239,231,0.14);
+        padding: 6px 8px;
+        font-size: 12px;
+        border-radius: 2px;
+      }
+      .tw-panel input[type=range] { padding: 0; height: 24px; }
+    </style>
+  `;
+  const panel = root.querySelector(".tw-panel");
+
+  // initialize controls from TWEAKS
+  root.querySelectorAll("[data-key]").forEach(ctrl => {
+    const k = ctrl.dataset.key;
+    if (ctrl.type === "range") ctrl.value = TWEAKS[k];
+    else ctrl.value = TWEAKS[k];
+    ctrl.addEventListener("input", () => {
+      const v = ctrl.type === "range" ? parseFloat(ctrl.value) : ctrl.value;
+      TWEAKS = { ...TWEAKS, [k]: v };
+      applyTweaks();
+      try {
+        window.parent.postMessage({ type: "__edit_mode_set_keys", edits: { [k]: v } }, "*");
+      } catch (e) {}
+    });
+  });
+
+  root.querySelector(".tw-close").addEventListener("click", () => {
+    panel.classList.remove("is-open");
+    try { window.parent.postMessage({ type: "__edit_mode_dismissed" }, "*"); } catch(e){}
+  });
+
+  // host integration
+  window.addEventListener("message", (ev) => {
+    const t = ev.data && ev.data.type;
+    if (t === "__activate_edit_mode")   panel.classList.add("is-open");
+    if (t === "__deactivate_edit_mode") panel.classList.remove("is-open");
+  });
+  try { window.parent.postMessage({ type: "__edit_mode_available" }, "*"); } catch(e){}
+}
+buildTweaks();
+
+// keyboard nav (left/right cycles pages, like a portfolio)
+const ORDER = ["home","cast","crew","awards","contact"];
+window.addEventListener("keydown", (e) => {
+  if (e.target && (e.target.tagName === "INPUT" || e.target.tagName === "SELECT")) return;
+  const cur = ORDER.indexOf(getPage());
+  if (e.key === "ArrowRight") location.hash = ORDER[(cur+1) % ORDER.length];
+  if (e.key === "ArrowLeft")  location.hash = ORDER[(cur-1+ORDER.length) % ORDER.length];
+});
+</script>
+</body>
+</html>
