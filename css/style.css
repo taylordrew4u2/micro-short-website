@@ -1,0 +1,319 @@
+/* ─────────────────────────────────────────────────────────────────────────── *
+ * Oh Shit, Did We Just Kill a Guy?  — Promotional Website
+ * Typeface: Cormorant Garamond (loaded via <link> in each HTML page)
+ * Two sizes: title (~4.5 vw clamped) and interface text (~0.65 rem)
+ * ─────────────────────────────────────────────────────────────────────────── */
+
+/* ── Reset ───────────────────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  overflow: hidden;          /* no scroll — stills carry the full viewport */
+  font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  color: #ffffff;
+  background-color: #111111;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ── Page-specific backgrounds ───────────────────────────────────────────── *
+ * Each body class loads the corresponding film still.
+ * The linear-gradient is a cinematic fallback when the image is unavailable.
+ * Replace the url() paths with your actual stills.
+ * ─────────────────────────────────────────────────────────────────────────── */
+.page-home {
+  background-image:
+    url('../images/still-home.jpg'),
+    linear-gradient(160deg, #0d0d0d 0%, #1a1308 50%, #080808 100%);
+}
+.page-cast {
+  background-image:
+    url('../images/still-cast.jpg'),
+    linear-gradient(160deg, #08080e 0%, #101020 50%, #060606 100%);
+}
+.page-crew {
+  background-image:
+    url('../images/still-crew.jpg'),
+    linear-gradient(160deg, #0a0a0a 0%, #121614 50%, #060606 100%);
+}
+.page-awards {
+  background-image:
+    url('../images/still-awards.jpg'),
+    linear-gradient(160deg, #0d0808 0%, #1a0e0d 50%, #080808 100%);
+}
+.page-contact {
+  background-image:
+    url('../images/still-contact.jpg'),
+    linear-gradient(160deg, #080a10 0%, #0c1218 50%, #060606 100%);
+}
+
+/* ── Navigation ──────────────────────────────────────────────────────────── *
+ * IMDb-credits-style: thin, all-caps, evenly spaced horizontal row.
+ * ─────────────────────────────────────────────────────────────────────────── */
+.site-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;               /* wraps gracefully on narrow viewports */
+  gap: 0.15em 2.75em;
+  padding: 1.4em 2em;
+}
+
+.site-nav a {
+  font-size: 0.65rem;
+  font-weight: 400;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.65);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.site-nav a:hover,
+.site-nav a.active {
+  color: #ffffff;
+}
+
+/* ── Stage (centred content area) ────────────────────────────────────────── */
+.stage {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 5rem 2rem 2rem;   /* top pad clears the fixed nav */
+  text-align: center;
+}
+
+/* ── Film title ──────────────────────────────────────────────────────────── */
+.film-title {
+  font-weight: 300;
+  font-size: clamp(1.75rem, 4.5vw, 4.5rem);
+  letter-spacing: 0.06em;
+  line-height: 1.2;
+  color: #ffffff;
+  text-shadow:
+    0 1px 10px rgba(0, 0, 0, 0.7),
+    0 3px 40px rgba(0, 0, 0, 0.5);
+  margin-bottom: 1.75em;
+  max-width: 22ch;
+}
+
+/* Title acts as a home link on sub-pages */
+.film-title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ── Festival laurels ────────────────────────────────────────────────────── *
+ * Oval-bordered badges, one per festival. Row wraps on narrow viewports.
+ * ─────────────────────────────────────────────────────────────────────────── */
+.laurels {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.1em;
+}
+
+.laurel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 90px;
+  height: 110px;
+  border: 1px solid rgba(255, 255, 255, 0.42);
+  border-radius: 50%;
+  padding: 0.75em 0.55em;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.82);
+  text-align: center;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.55);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.laurel:hover {
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.75);
+}
+
+.laurel-name {
+  display: block;
+  font-size: 0.47rem;
+  font-weight: 400;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  line-height: 1.5;
+}
+
+.laurel-year {
+  display: block;
+  font-size: 0.54rem;
+  font-weight: 300;
+  letter-spacing: 0.07em;
+  margin: 0.18em 0;
+}
+
+.laurel-award {
+  display: block;
+  font-size: 0.42rem;
+  font-style: italic;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  line-height: 1.4;
+  opacity: 0.7;
+}
+
+/* ── Section label (sub-pages) ───────────────────────────────────────────── */
+.section-label {
+  font-size: 0.65rem;
+  font-weight: 400;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+  margin-bottom: 2em;
+}
+
+/* ── Credits grid (Cast & Crew pages) ────────────────────────────────────── */
+.credits {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.25em 3em;
+  max-width: 720px;
+}
+
+.credit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25em;
+}
+
+.credit-role {
+  font-size: 0.55rem;
+  font-weight: 400;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.48);
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
+}
+
+.credit-name {
+  font-size: clamp(0.9rem, 1.8vw, 1.35rem);
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  color: #ffffff;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.65);
+}
+
+/* ── Awards list ─────────────────────────────────────────────────────────── */
+.awards-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.25em 3em;
+  max-width: 800px;
+}
+
+.award-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25em;
+  text-align: center;
+}
+
+.award-festival {
+  font-size: 0.55rem;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.48);
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
+}
+
+.award-title {
+  font-size: clamp(0.85rem, 1.7vw, 1.3rem);
+  font-weight: 300;
+  letter-spacing: 0.09em;
+  color: #ffffff;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.65);
+}
+
+/* ── Contact ─────────────────────────────────────────────────────────────── */
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6em;
+}
+
+.contact-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2em;
+}
+
+.contact-label {
+  font-size: 0.55rem;
+  font-weight: 400;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
+}
+
+.contact-value {
+  font-size: clamp(0.9rem, 1.8vw, 1.35rem);
+  font-weight: 300;
+  letter-spacing: 0.12em;
+  color: #ffffff;
+  text-decoration: none;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.65);
+  transition: color 0.2s ease;
+}
+
+a.contact-value:hover {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* ── Responsive ──────────────────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .site-nav {
+    gap: 0.15em 1.5em;
+    padding: 1em 1.25em;
+  }
+
+  .film-title {
+    margin-bottom: 1.4em;
+  }
+
+  .laurel {
+    width: 78px;
+    height: 96px;
+  }
+
+  .credits,
+  .awards-list {
+    gap: 1em 2em;
+  }
+}
