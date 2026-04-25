@@ -3,469 +3,402 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Oh Shit Did We Just Kill A Guy &mdash; a micro short film</title>
-<meta name="description" content="Oh Shit Did We Just Kill A Guy &mdash; a dark-comedy micro short. Official festivals, awards, cast, and screenings." />
-<meta property="og:title" content="Oh Shit Did We Just Kill A Guy" />
-<meta property="og:description" content="A dark-comedy micro short. Two friends. One bad night. One unanswered question." />
+<title>Oh Shit, Did We Just Kill a Guy?</title>
+<meta name="description" content="A micro short film created by Taylor Drew, directed by Oscar Monroy." />
+<meta property="og:title" content="Oh Shit, Did We Just Kill a Guy?" />
+<meta property="og:description" content="A micro short film created by Taylor Drew, directed by Oscar Monroy." />
 <meta property="og:type" content="video.movie" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Inter:wght@300;400;500;600;800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 <style>
   :root{
-    --bg:#0a0a0a;
-    --bg-2:#111;
-    --ink:#f3efe6;
-    --ink-dim:#a39d8e;
-    --blood:#a8000c;
-    --blood-bright:#d8121f;
-    --gold:#d4b35a;
-    --rule:#2a2a2a;
-    --maxw:1180px;
+    --fg:#f3efe7;
+    --fg-dim:rgba(243,239,231,0.72);
+    --rule:rgba(243,239,231,0.22);
   }
+
   *{box-sizing:border-box}
-  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;-webkit-font-smoothing:antialiased}
-  a{color:inherit}
-  img{max-width:100%;display:block}
-  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
-
-  /* Top nav */
-  header.nav{
-    position:sticky;top:0;z-index:30;
-    background:linear-gradient(180deg,rgba(10,10,10,.92),rgba(10,10,10,.6) 70%,rgba(10,10,10,0));
-    backdrop-filter:blur(8px);
-  }
-  .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:18px 24px;max-width:var(--maxw);margin:0 auto}
-  .brand{font-family:"Special Elite",monospace;letter-spacing:.05em;font-size:14px;color:var(--ink-dim)}
-  .brand b{color:var(--ink)}
-  nav ul{list-style:none;display:flex;gap:28px;margin:0;padding:0;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-dim)}
-  nav a{text-decoration:none}
-  nav a:hover{color:var(--ink)}
-
-  /* Hero */
-  .hero{
-    position:relative;
-    min-height:92vh;
-    display:flex;align-items:center;justify-content:center;
-    text-align:center;
+  html,body{
+    margin:0;padding:0;height:100%;
+    background:#000;color:var(--fg);
+    font-family:Oswald,system-ui,sans-serif;
     overflow:hidden;
-    isolation:isolate;
+    -webkit-font-smoothing:antialiased;
   }
-  .hero::before{
-    content:"";position:absolute;inset:0;z-index:-2;
-    background:
-      radial-gradient(1200px 700px at 50% 30%, #1a1a1a 0%, #0a0a0a 60%, #050505 100%);
-  }
-  .hero::after{
-    content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
-    background-image:
-      repeating-linear-gradient(0deg, rgba(255,255,255,.025) 0 1px, transparent 1px 3px),
-      radial-gradient(1px 1px at 20% 30%, rgba(255,255,255,.18), transparent 60%),
-      radial-gradient(1px 1px at 70% 80%, rgba(255,255,255,.10), transparent 60%),
-      radial-gradient(1px 1px at 40% 70%, rgba(255,255,255,.12), transparent 60%);
-    mix-blend-mode:screen;
-    opacity:.5;
-    animation:grain 1.2s steps(2) infinite;
-  }
-  @keyframes grain{
-    0%{transform:translate(0,0)}
-    25%{transform:translate(-1%,1%)}
-    50%{transform:translate(1%,-1%)}
-    75%{transform:translate(-1%,-1%)}
-    100%{transform:translate(0,0)}
-  }
-  .hero-inner{padding:120px 24px 80px;max-width:1000px}
-  .kicker{
-    font-family:"Special Elite",monospace;
-    color:var(--blood-bright);
-    letter-spacing:.4em;
-    font-size:12px;text-transform:uppercase;
-    margin-bottom:18px;
-  }
-  h1.title{
-    font-family:Inter,sans-serif;
-    font-weight:800;
-    font-size:clamp(40px,7.5vw,96px);
-    line-height:.95;
-    letter-spacing:-.02em;
-    margin:0 0 8px;
-    text-transform:uppercase;
-  }
-  h1.title .blood{color:var(--blood-bright);text-shadow:0 0 20px rgba(216,18,31,.35)}
-  h1.title .strike{display:inline-block;transform:rotate(-2deg)}
-  .tagline{
-    margin:24px auto 36px;
-    max-width:640px;
-    color:var(--ink-dim);
-    font-size:clamp(15px,1.6vw,18px);
-    line-height:1.55;
-  }
-  .meta-row{
-    display:flex;flex-wrap:wrap;gap:14px 22px;justify-content:center;
-    color:var(--ink-dim);
-    font-family:"Special Elite",monospace;
-    font-size:13px;letter-spacing:.12em;text-transform:uppercase;
-  }
-  .meta-row span{display:inline-flex;align-items:center;gap:8px}
-  .meta-row span::before{content:"";width:6px;height:6px;background:var(--blood);display:inline-block;transform:rotate(45deg)}
+  a{color:inherit;text-decoration:none}
+  img{display:block}
 
-  .cta-row{margin-top:38px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
-  .btn{
-    display:inline-flex;align-items:center;gap:10px;
-    padding:14px 22px;
-    border:1px solid var(--ink);
-    color:var(--ink);text-decoration:none;
-    font-size:13px;letter-spacing:.22em;text-transform:uppercase;
-    transition:background .15s ease,color .15s ease,transform .1s ease;
-  }
-  .btn:hover{background:var(--ink);color:#000}
-  .btn.primary{background:var(--blood);border-color:var(--blood)}
-  .btn.primary:hover{background:var(--blood-bright);border-color:var(--blood-bright);color:#fff}
-  .btn:active{transform:translateY(1px)}
-
-  /* Section frame */
-  section{padding:96px 0;border-top:1px solid var(--rule)}
-  .section-eyebrow{
-    font-family:"Special Elite",monospace;
-    color:var(--blood-bright);
-    letter-spacing:.32em;font-size:12px;text-transform:uppercase;
-    margin-bottom:14px;
-  }
-  .section-title{
-    font-size:clamp(28px,4vw,44px);
-    font-weight:800;letter-spacing:-.01em;margin:0 0 28px;text-transform:uppercase;
-  }
-
-  /* Trailer */
-  .trailer{
-    position:relative;
-    aspect-ratio:16/9;
-    background:#000;
-    border:1px solid var(--rule);
-    overflow:hidden;
-  }
-  .trailer .placeholder{
-    position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:14px;
-    background:
-      radial-gradient(800px 400px at 50% 50%, rgba(168,0,12,.18), transparent 70%),
-      repeating-linear-gradient(180deg, rgba(255,255,255,.03) 0 2px, transparent 2px 4px);
-    cursor:pointer;
-  }
-  .play-btn{
-    width:88px;height:88px;border-radius:50%;
-    border:2px solid var(--ink);
-    display:flex;align-items:center;justify-content:center;
-    transition:transform .2s ease, background .2s ease;
-  }
-  .play-btn:hover{background:var(--blood);border-color:var(--blood);transform:scale(1.05)}
-  .play-btn::after{
-    content:"";display:block;
-    border-style:solid;border-width:14px 0 14px 22px;
-    border-color:transparent transparent transparent var(--ink);
-    margin-left:6px;
-  }
-  .trailer .label{
-    color:var(--ink-dim);font-family:"Special Elite",monospace;letter-spacing:.3em;font-size:12px;text-transform:uppercase;
-  }
-  .trailer iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-
-  /* Synopsis */
-  .synopsis{display:grid;grid-template-columns:1fr 1.4fr;gap:64px;align-items:start}
-  .synopsis p{font-size:18px;line-height:1.7;color:#dcd6c8;margin:0 0 18px}
-  .synopsis p .drop{
-    float:left;font-size:64px;line-height:.85;padding:6px 10px 0 0;
-    font-weight:800;color:var(--blood-bright);font-family:Inter,sans-serif;
-  }
-  .specs{
-    border-top:1px solid var(--rule);
-    border-bottom:1px solid var(--rule);
-    padding:16px 0;
-  }
-  .specs dl{display:grid;grid-template-columns:auto 1fr;gap:10px 24px;margin:0;font-family:"Special Elite",monospace;font-size:13px;letter-spacing:.1em}
-  .specs dt{color:var(--ink-dim);text-transform:uppercase}
-  .specs dd{margin:0;color:var(--ink)}
-
-  /* Laurels */
-  .laurels{
-    display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:32px 28px;
-  }
-  .laurel{
-    position:relative;
-    padding:28px 18px;
-    text-align:center;
-    border:1px solid var(--rule);
-    background:linear-gradient(180deg,#101010,#0a0a0a);
-  }
-  .laurel.win{border-color:var(--gold)}
-  .laurel.win::before, .laurel.win::after,
-  .laurel::before, .laurel::after{
-    content:"";position:absolute;top:18px;bottom:18px;width:30px;
-    background-repeat:no-repeat;background-size:contain;background-position:center;
-  }
-  .laurel::before{
-    left:14px;
-    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 200'><g fill='none' stroke='%23a39d8e' stroke-width='2' stroke-linecap='round'><path d='M22 10 C 8 50, 6 100, 18 190'/><path d='M20 30 C 8 30, 4 38, 4 50'/><path d='M18 55 C 6 55, 2 63, 2 75'/><path d='M16 80 C 4 80, 0 88, 0 100'/><path d='M16 105 C 4 105, 0 113, 0 125'/><path d='M18 130 C 6 130, 2 138, 2 150'/><path d='M20 160 C 8 160, 4 168, 4 180'/></g></svg>");
-  }
-  .laurel::after{
-    right:14px;transform:scaleX(-1);
-    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 200'><g fill='none' stroke='%23a39d8e' stroke-width='2' stroke-linecap='round'><path d='M22 10 C 8 50, 6 100, 18 190'/><path d='M20 30 C 8 30, 4 38, 4 50'/><path d='M18 55 C 6 55, 2 63, 2 75'/><path d='M16 80 C 4 80, 0 88, 0 100'/><path d='M16 105 C 4 105, 0 113, 0 125'/><path d='M18 130 C 6 130, 2 138, 2 150'/><path d='M20 160 C 8 160, 4 168, 4 180'/></g></svg>");
-  }
-  .laurel.win::before, .laurel.win::after{
-    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 200'><g fill='none' stroke='%23d4b35a' stroke-width='2.2' stroke-linecap='round'><path d='M22 10 C 8 50, 6 100, 18 190'/><path d='M20 30 C 8 30, 4 38, 4 50'/><path d='M18 55 C 6 55, 2 63, 2 75'/><path d='M16 80 C 4 80, 0 88, 0 100'/><path d='M16 105 C 4 105, 0 113, 0 125'/><path d='M18 130 C 6 130, 2 138, 2 150'/><path d='M20 160 C 8 160, 4 168, 4 180'/></g></svg>");
-  }
-  .laurel.win::after{transform:scaleX(-1)}
-  .laurel .status{
-    display:block;
-    font-family:"Special Elite",monospace;font-size:11px;letter-spacing:.32em;text-transform:uppercase;
-    color:var(--ink-dim);margin-bottom:8px;
-  }
-  .laurel.win .status{color:var(--gold)}
-  .laurel .fest-name{font-size:16px;font-weight:600;letter-spacing:.02em;line-height:1.3;margin:0 0 6px}
-  .laurel .fest-meta{font-size:12px;color:var(--ink-dim);font-family:"Special Elite",monospace;letter-spacing:.12em;text-transform:uppercase}
-
-  /* Cast */
-  .cast{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:28px}
-  .cast .card{padding:18px 0;border-top:1px solid var(--rule)}
-  .cast .role{font-family:"Special Elite",monospace;font-size:11px;color:var(--ink-dim);letter-spacing:.28em;text-transform:uppercase;margin-bottom:6px}
-  .cast .name{font-size:20px;font-weight:600;letter-spacing:-.005em}
-
-  /* Stills strip */
-  .stills{
-    display:grid;grid-template-columns:repeat(4,1fr);gap:6px;
-  }
+  /* ---------- Stage (full-bleed background still) ---------- */
+  .stage{position:fixed;inset:0;background:#000;overflow:hidden}
   .still{
-    aspect-ratio:4/3;
-    background:#0d0d0d;
-    border:1px solid var(--rule);
-    position:relative;overflow:hidden;
+    position:absolute;inset:0;
+    background-size:cover;background-position:center;
+    opacity:0;transition:opacity 700ms ease;
+    will-change:opacity;
   }
-  .still svg{width:100%;height:100%;display:block}
-
-  /* Footer / contact */
-  footer{
-    border-top:1px solid var(--rule);
-    padding:64px 0 40px;color:var(--ink-dim);font-size:13px;
+  .still.is-active{opacity:1}
+  .stage::after{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:
+      linear-gradient(180deg,
+        rgba(0,0,0,0.55) 0%,
+        rgba(0,0,0,0.18) 30%,
+        rgba(0,0,0,0.18) 60%,
+        rgba(0,0,0,0.62) 100%),
+      radial-gradient(ellipse at center,
+        transparent 0%,
+        transparent 50%,
+        rgba(0,0,0,0.42) 100%);
   }
-  .foot-grid{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:32px}
-  footer h4{font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--ink);margin:0 0 14px;font-family:"Special Elite",monospace}
-  footer ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px}
-  footer a{color:var(--ink-dim);text-decoration:none}
-  footer a:hover{color:var(--ink)}
-  .copy{margin-top:48px;padding-top:18px;border-top:1px solid var(--rule);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-family:"Special Elite",monospace;letter-spacing:.16em;text-transform:uppercase;font-size:11px}
 
-  @media (max-width:780px){
-    section{padding:64px 0}
-    .synopsis{grid-template-columns:1fr;gap:32px}
-    .stills{grid-template-columns:repeat(2,1fr)}
-    .foot-grid{grid-template-columns:1fr}
-    nav ul{display:none}
+  /* ---------- Top nav ---------- */
+  .nav{
+    position:absolute;top:0;left:0;right:0;z-index:5;
+    display:flex;justify-content:center;
+    border-bottom:1px solid var(--rule);
+  }
+  .nav-inner{
+    display:flex;align-items:center;justify-content:center;
+    gap:0;
+    width:100%;max-width:980px;
+    padding:18px 24px;
+  }
+  .nav a{
+    font-family:Oswald,sans-serif;
+    font-size:12.5px;font-weight:500;
+    letter-spacing:0.32em;text-transform:uppercase;
+    color:var(--fg-dim);
+    padding:6px 18px;
+    border-bottom:1px solid transparent;
+    transition:color 160ms ease, border-color 160ms ease;
+    white-space:nowrap;
+  }
+  .nav a:hover{color:var(--fg)}
+  .nav a.is-active{color:var(--fg);border-bottom-color:var(--fg)}
+  .nav .sep{
+    width:1px;height:11px;background:var(--rule);
+    flex:none;
+  }
+
+  @media (max-width:720px){
+    .nav .sep{display:none}
+  }
+  @media (max-width:540px){
+    .nav-inner{justify-content:flex-start;overflow-x:auto;-webkit-overflow-scrolling:touch}
+    .nav-inner::-webkit-scrollbar{display:none}
+    .nav-inner{scrollbar-width:none}
+  }
+
+  /* ---------- Centered content ---------- */
+  .center{
+    position:absolute;inset:0;z-index:3;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;
+    padding:70px 24px 140px;
+  }
+
+  .eyebrow{
+    font-family:Oswald,sans-serif;font-style:italic;
+    font-size:14px;font-weight:400;
+    letter-spacing:0.18em;text-transform:lowercase;
+    color:var(--fg-dim);
+    margin:0 0 18px;
+  }
+
+  .title{
+    font-family:Anton,sans-serif;font-weight:400;
+    font-size:clamp(28px,5.4vw,86px);
+    line-height:1;letter-spacing:0.005em;
+    text-transform:uppercase;
+    color:var(--fg);
+    text-shadow:0 2px 28px rgba(0,0,0,0.65);
+    margin:0;
+    white-space:nowrap;
+  }
+
+  .subtitle{
+    font-family:Oswald,sans-serif;font-weight:400;
+    font-size:clamp(13px,1.2vw,16px);
+    letter-spacing:0.36em;text-transform:uppercase;
+    color:var(--fg-dim);
+    margin:36px 0 0;
+  }
+
+  /* Page-specific content slot (under subtitle) */
+  .slot{margin-top:36px;width:100%;max-width:760px}
+
+  /* Roster (Cast / Crew) */
+  .roster{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:0 56px;
+  }
+  .roster .row{
+    display:flex;justify-content:space-between;align-items:baseline;
+    padding:6px 0;
+    border-bottom:1px solid rgba(243,239,231,0.10);
+    gap:18px;
+  }
+  .roster .role{
+    font-style:italic;font-weight:300;
+    color:var(--fg-dim);
+  }
+  .roster .name{
+    font-size:0.92em;font-weight:500;
+    letter-spacing:0.12em;text-transform:uppercase;
+    color:var(--fg);
+  }
+
+  /* Contact link */
+  .contact-link{
+    display:inline-block;
+    font-size:clamp(15px,1.3vw,19px);
+    color:var(--fg);
+    border-bottom:1px solid var(--rule);
+    padding-bottom:4px;
+    transition:border-color 160ms ease;
+  }
+  .contact-link:hover{border-bottom-color:var(--fg)}
+
+  /* ---------- Laurels row (default) ---------- */
+  .laurels{
+    position:absolute;left:0;right:0;bottom:56px;z-index:4;
+    display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-end;
+    gap:clamp(14px,2.6vw,36px);
+    padding:0 32px;
+  }
+  .laurels a{
+    display:inline-flex;
+    transition:transform 200ms ease, opacity 200ms ease;
+    opacity:0.95;
+  }
+  .laurels a:hover{opacity:1;transform:translateY(-2px)}
+  .laurels img{
+    height:clamp(54px,7.2vh,84px);
+    width:auto;
+  }
+
+  /* ---------- Footer ---------- */
+  .foot{
+    position:absolute;left:0;right:0;bottom:18px;z-index:4;
+    text-align:center;
+    font-family:Oswald,sans-serif;font-style:italic;font-weight:400;
+    font-size:11px;letter-spacing:0.28em;text-transform:uppercase;
+    color:rgba(243,239,231,0.55);
+  }
+
+  /* ---------- Mobile title wrapping ---------- */
+  @media (max-width:900px){
+    .title{
+      white-space:normal;
+      font-size:clamp(32px,8vw,64px);
+      max-width:18ch;
+    }
+  }
+
+  /* ---------- Roster on mobile ---------- */
+  @media (max-width:760px){
+    .roster{grid-template-columns:1fr;gap:0}
+  }
+
+  /* ---------- Awards page (unique layout) ---------- */
+  body[data-page="awards"] .center{
+    justify-content:flex-start;
+    padding-top:70px;
+  }
+  body[data-page="awards"] .title{
+    font-size:clamp(16px,2vw,24px);
+    white-space:nowrap;
+  }
+  body[data-page="awards"] .eyebrow{font-size:10px}
+  body[data-page="awards"] .subtitle{display:none}
+  body[data-page="awards"] .foot{display:none}
+  body[data-page="awards"] .slot{display:none}
+
+  body[data-page="awards"] .laurels{
+    top:140px;bottom:36px;
+    left:0;right:0;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    grid-auto-rows:auto;
+    gap:clamp(10px,2vw,32px);
+    padding:0 clamp(32px,6vw,120px);
+    align-items:center;justify-items:center;
+    flex-wrap:initial;
+  }
+  body[data-page="awards"] .laurels a{
+    width:100%;
+    display:flex;justify-content:center;align-items:center;
+  }
+  body[data-page="awards"] .laurels img{
+    width:100%;
+    max-width:200px;
+    height:auto;
+    object-fit:contain;
+  }
+
+  @media (max-width:760px){
+    body[data-page="awards"] .laurels{
+      top:120px;
+      gap:8px;
+      padding:0 14px;
+    }
+    body[data-page="awards"] .laurels img{max-width:140px}
   }
 </style>
 </head>
-<body>
+<body data-page="home">
 
-<header class="nav">
-  <div class="nav-inner">
-    <div class="brand"><b>OSDWJKAG</b> &nbsp;/&nbsp; a micro short</div>
-    <nav>
-      <ul>
-        <li><a href="#trailer">Trailer</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#festivals">Festivals</a></li>
-        <li><a href="#cast">Cast &amp; Crew</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
+<div class="stage" id="stage" aria-hidden="true">
+  <div class="still" data-page="home"    style="background-image:url('stills/still-home.png')"></div>
+  <div class="still" data-page="cast"    style="background-image:url('stills/still-cast.png')"></div>
+  <div class="still" data-page="crew"    style="background-image:url('stills/still-crew.png')"></div>
+  <div class="still" data-page="awards"  style="background-image:url('stills/still-awards.png')"></div>
+  <div class="still" data-page="contact" style="background-image:url('stills/still-contact.png')"></div>
+</div>
 
-<section class="hero" aria-label="Hero">
-  <div class="hero-inner">
-    <div class="kicker">A micro short film &nbsp;//&nbsp; Runtime 4:32</div>
-    <h1 class="title">
-      Oh <span class="blood">Shit</span><br/>
-      Did We Just <span class="strike blood">Kill</span> A Guy
-    </h1>
-    <p class="tagline">
-      Two friends. One bad decision. One body in the trunk and zero good answers.
-      A pitch-black comedy about loyalty, panic, and the things you can&rsquo;t take back.
-    </p>
-    <div class="meta-row">
-      <span>Dark Comedy</span>
-      <span>2025</span>
-      <span>4 min 32 sec</span>
-      <span>16:9 &middot; 4K</span>
-    </div>
-    <div class="cta-row">
-      <a class="btn primary" href="#trailer">Watch the trailer</a>
-      <a class="btn" href="#festivals">Festivals &amp; awards</a>
-    </div>
+<nav class="nav" aria-label="Primary">
+  <div class="nav-inner" id="navInner">
+    <a href="#home"    data-page="home">Film</a>
+    <span class="sep" aria-hidden="true"></span>
+    <a href="#cast"    data-page="cast">Cast</a>
+    <span class="sep" aria-hidden="true"></span>
+    <a href="#crew"    data-page="crew">Crew</a>
+    <span class="sep" aria-hidden="true"></span>
+    <a href="#awards"  data-page="awards">Awards</a>
+    <span class="sep" aria-hidden="true"></span>
+    <a href="#contact" data-page="contact">Contact</a>
   </div>
-</section>
+</nav>
 
-<section id="trailer" aria-label="Trailer">
-  <div class="wrap">
-    <div class="section-eyebrow">// Official trailer</div>
-    <h2 class="section-title">Press play. Don&rsquo;t look away.</h2>
-    <div class="trailer" id="trailerBox">
-      <div class="placeholder" id="trailerPlaceholder" role="button" tabindex="0" aria-label="Play trailer">
-        <div class="play-btn" aria-hidden="true"></div>
-        <div class="label">Play &mdash; 1:24</div>
-      </div>
-    </div>
-  </div>
-</section>
+<main class="center">
+  <p class="eyebrow"   id="eyebrow">a micro short</p>
+  <h1 class="title">Oh Shit, Did We Just Kill a Guy?</h1>
+  <p class="subtitle"  id="subtitle"></p>
+  <div class="slot"    id="slot"></div>
+</main>
 
-<section id="about" aria-label="About the film">
-  <div class="wrap synopsis">
-    <div>
-      <div class="section-eyebrow">// Synopsis</div>
-      <h2 class="section-title">A very bad night, told very fast.</h2>
-      <div class="specs">
-        <dl>
-          <dt>Director</dt><dd>Drew Taylor</dd>
-          <dt>Writer</dt><dd>Drew Taylor</dd>
-          <dt>Producer</dt><dd>Independent</dd>
-          <dt>Genre</dt><dd>Dark comedy / Thriller</dd>
-          <dt>Runtime</dt><dd>4:32</dd>
-          <dt>Format</dt><dd>4K &middot; 16:9 &middot; Stereo</dd>
-          <dt>Language</dt><dd>English</dd>
-          <dt>Year</dt><dd>2025</dd>
-        </dl>
-      </div>
-    </div>
-    <div>
-      <p>
-        <span class="drop">M</span>arcus and Eli have been best friends since the seventh grade.
-        Tonight they&rsquo;re driving home from a party that ran long and a fight that
-        went further than either of them meant. Somewhere on the dark stretch
-        between the freeway and the suburbs, the headlights catch something
-        that probably wasn&rsquo;t there a second ago.
-      </p>
-      <p>
-        What follows is four and a half minutes of the worst conversation
-        of their lives &mdash; whispered, panicked, and occasionally, against their
-        better judgement, very funny. <em>Oh Shit Did We Just Kill A Guy</em> is a
-        micro short about the moment a friendship discovers what it&rsquo;s really
-        made of, lit by hazard lights and a flashlight that keeps dying.
-      </p>
-    </div>
-  </div>
-</section>
+<div class="laurels" id="laurels" aria-label="Festival laurels"></div>
 
-<section id="stills" aria-label="Stills">
-  <div class="wrap">
-    <div class="section-eyebrow">// Stills</div>
-    <h2 class="section-title">From the cutting room.</h2>
-    <div class="stills">
-      <div class="still"><svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="g1" cx="60%" cy="40%" r="60%"><stop offset="0" stop-color="#3a1416"/><stop offset="1" stop-color="#0a0a0a"/></radialGradient></defs><rect width="200" height="150" fill="url(#g1)"/><circle cx="140" cy="60" r="22" fill="#d8121f" opacity=".55"/><rect x="0" y="100" width="200" height="50" fill="#000" opacity=".55"/><rect x="20" y="110" width="60" height="6" fill="#fff" opacity=".25"/></svg></div>
-      <div class="still"><svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="g2" x1="0" x2="1"><stop offset="0" stop-color="#1a1a1a"/><stop offset="1" stop-color="#000"/></linearGradient></defs><rect width="200" height="150" fill="url(#g2)"/><polygon points="0,150 80,80 200,150" fill="#0e0e0e"/><circle cx="100" cy="50" r="16" fill="#f3efe6" opacity=".7"/></svg></div>
-      <div class="still"><svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="150" fill="#0a0a0a"/><rect x="20" y="40" width="160" height="10" fill="#d8121f" opacity=".7"/><rect x="20" y="60" width="120" height="6" fill="#fff" opacity=".15"/><rect x="20" y="76" width="80" height="6" fill="#fff" opacity=".1"/></svg></div>
-      <div class="still"><svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="g3" cx="50%" cy="80%" r="80%"><stop offset="0" stop-color="#222"/><stop offset="1" stop-color="#000"/></radialGradient></defs><rect width="200" height="150" fill="url(#g3)"/><ellipse cx="100" cy="130" rx="80" ry="10" fill="#d8121f" opacity=".5"/><circle cx="80" cy="70" r="3" fill="#fff"/><circle cx="120" cy="68" r="3" fill="#fff"/></svg></div>
-    </div>
-  </div>
-</section>
-
-<section id="festivals" aria-label="Festivals and awards">
-  <div class="wrap">
-    <div class="section-eyebrow">// Official selections &amp; awards</div>
-    <h2 class="section-title">On the festival circuit.</h2>
-    <div class="laurels" id="laurels">
-      <!-- entries injected via JS for easy editing -->
-    </div>
-  </div>
-</section>
-
-<section id="cast" aria-label="Cast and crew">
-  <div class="wrap">
-    <div class="section-eyebrow">// Cast &amp; crew</div>
-    <h2 class="section-title">Who did this.</h2>
-    <div class="cast">
-      <div class="card"><div class="role">Director / Writer</div><div class="name">Drew Taylor</div></div>
-      <div class="card"><div class="role">Marcus</div><div class="name">TBA</div></div>
-      <div class="card"><div class="role">Eli</div><div class="name">TBA</div></div>
-      <div class="card"><div class="role">Cinematographer</div><div class="name">TBA</div></div>
-      <div class="card"><div class="role">Editor</div><div class="name">TBA</div></div>
-      <div class="card"><div class="role">Sound</div><div class="name">TBA</div></div>
-    </div>
-  </div>
-</section>
-
-<footer id="contact">
-  <div class="wrap">
-    <div class="foot-grid">
-      <div>
-        <h4>Oh Shit Did We Just Kill A Guy</h4>
-        <p style="margin:0;line-height:1.6;max-width:34ch">
-          A micro short film. Festival inquiries, press, and screening
-          requests welcome.
-        </p>
-      </div>
-      <div>
-        <h4>Press &amp; Bookings</h4>
-        <ul>
-          <li><a href="mailto:hello@example.com">hello@example.com</a></li>
-          <li><a href="#">Press kit (PDF)</a></li>
-          <li><a href="#">Hi-res stills</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Follow</h4>
-        <ul>
-          <li><a href="#">Instagram</a></li>
-          <li><a href="#">Letterboxd</a></li>
-          <li><a href="#">Vimeo</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="copy">
-      <span>&copy; 2025 &mdash; All rights reserved</span>
-      <span>Made very seriously about a very stupid night</span>
-    </div>
-  </div>
-</footer>
+<p class="foot">Created by Taylor Drew &middot; Directed by Oscar Monroy &middot; 2026</p>
 
 <script>
-  // Easy-to-edit festival list. Mark `win:true` for golden-trim laurels.
-  const FESTIVALS = [
-    { name: "Sunscreen Film Festival",        meta: "Official Selection 2025",   win: false },
-    { name: "Atlanta Shortsfest",              meta: "Official Selection 2025",   win: false },
-    { name: "Dances With Films",               meta: "Best Micro Short 2025",     win: true  },
-    { name: "LA Independent Shorts",           meta: "Audience Award 2025",       win: true  },
-    { name: "Brooklyn Horror Film Festival",   meta: "Official Selection 2025",   win: false },
-    { name: "Slamdance Anarchy",               meta: "Official Selection 2025",   win: false },
-    { name: "HollyShorts",                     meta: "Best Comedy Short 2025",    win: true  },
-    { name: "Aesthetica Short Film Festival",  meta: "Official Selection 2025",   win: false },
+  const PAGES = ["home", "cast", "crew", "awards", "contact"];
+
+  const PAGE_DATA = {
+    home: {
+      eyebrow: "a micro short",
+      subtitle: "",
+      slot: ""
+    },
+    cast: {
+      eyebrow: "the cast",
+      subtitle: "Cast",
+      slot: rosterHTML([
+        ["Starring",  "Taylor Drew"],
+        ["Starring",  "Adiel Kay"],
+        ["Featuring", "Evan Kash"]
+      ])
+    },
+    crew: {
+      eyebrow: "the crew",
+      subtitle: "Crew",
+      slot: rosterHTML([
+        ["Created by",              "Taylor Drew"],
+        ["Directed by",              "Oscar Monroy"],
+        ["Director of Photography",  "Mike Cerisano"],
+        ["Costume Design",           "Taylor Drew"],
+        ["Asst. Camera & Grip",      "Miguel Dusauzay"],
+        ["Music",                    "Jared Bailey"]
+      ])
+    },
+    awards: {
+      eyebrow: "selections & awards",
+      subtitle: "Awards",
+      slot: ""
+    },
+    contact: {
+      eyebrow: "for press & bookings",
+      subtitle: "Contact",
+      slot: `<a class="contact-link" href="https://filmfreeway.com/OhShitDidWeJustKillAGuy" target="_blank" rel="noopener">filmfreeway.com/OhShitDidWeJustKillAGuy</a>`
+    }
+  };
+
+  const LAURELS = [
+    { file: "altff-winner.png",                alt: "AltFF — Winner, Best Writer (Super Short, Spring 2026)", url: "https://filmfreeway.com/AltFFAlternativeFilmFestival" },
+    { file: "jersey-devil.png",                alt: "The Jersey Devil Film Festival — Official Selection",    url: "https://filmfreeway.com/TheJerseyDevilFilmFestival" },
+    { file: "lic-best-micro-short.png",        alt: "Long Island Cinema Festival — Best Micro Short 2026",    url: "https://filmfreeway.com/LongIslandCinemaFestival" },
+    { file: "altff-director.png",              alt: "AltFF — Best Director Nominee 2026",                     url: "https://filmfreeway.com/AltFFAlternativeFilmFestival" },
+    { file: "altff-selection.png",             alt: "AltFF — Official Selection 2026",                        url: "https://filmfreeway.com/AltFFAlternativeFilmFestival" },
+    { file: "east-village.png",                alt: "East Village New York Film Festival — Official Selection 2026", url: "https://filmfreeway.com/EastVillageNewYorkFilmFestival" },
+    { file: "giggle-shitz.png",                alt: "Giggle Shitz Film Festival — Official Selection",        url: "https://filmfreeway.com/GiggleShitzFilmFestival" },
+    { file: "lic-cinematographer.png",         alt: "Long Island Cinema Festival — Best Cinematographer 2026", url: "https://filmfreeway.com/LongIslandCinemaFestival" },
+    { file: "lic-micro-short-nominee.png",     alt: "Long Island Cinema Festival — Best Micro Short Nominee 2026", url: "https://filmfreeway.com/LongIslandCinemaFestival" },
+    { file: "lic-official-selection.png",      alt: "Long Island Cinema Festival — Official Selection 2026",  url: "https://filmfreeway.com/LongIslandCinemaFestival" }
   ];
 
-  const root = document.getElementById("laurels");
-  for (const f of FESTIVALS) {
-    const el = document.createElement("div");
-    el.className = "laurel" + (f.win ? " win" : "");
-    el.innerHTML = `
-      <span class="status">${f.win ? "Winner" : "Official Selection"}</span>
-      <p class="fest-name">${f.name}</p>
-      <p class="fest-meta">${f.meta}</p>
-    `;
-    root.appendChild(el);
+  function rosterHTML(rows) {
+    return `<div class="roster">${
+      rows.map(([role, name]) => `
+        <div class="row">
+          <span class="role">${role}</span>
+          <span class="name">${name}</span>
+        </div>`).join("")
+    }</div>`;
   }
 
-  // Trailer placeholder click loads YouTube embed (replace VIDEO_ID).
-  const ph = document.getElementById("trailerPlaceholder");
-  const box = document.getElementById("trailerBox");
-  function loadTrailer() {
-    const iframe = document.createElement("iframe");
-    iframe.src = "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&rel=0";
-    iframe.allow = "autoplay; encrypted-media; picture-in-picture";
-    iframe.allowFullscreen = true;
-    box.innerHTML = "";
-    box.appendChild(iframe);
+  function renderLaurels() {
+    const el = document.getElementById("laurels");
+    el.innerHTML = LAURELS.map(l => `
+      <a href="${l.url}" target="_blank" rel="noopener">
+        <img src="laurels/${l.file}" alt="${l.alt}" loading="lazy" />
+      </a>
+    `).join("");
   }
-  ph.addEventListener("click", loadTrailer);
-  ph.addEventListener("keydown", (e) => {
-    if (e.key === "Enter" || e.key === " ") { e.preventDefault(); loadTrailer(); }
+
+  function setPage(page) {
+    if (!PAGES.includes(page)) page = "home";
+
+    document.body.dataset.page = page;
+
+    // Active nav link
+    document.querySelectorAll("#navInner a").forEach(a => {
+      a.classList.toggle("is-active", a.dataset.page === page);
+    });
+
+    // Background still cross-fade
+    document.querySelectorAll(".still").forEach(s => {
+      s.classList.toggle("is-active", s.dataset.page === page);
+    });
+
+    // Page content
+    const data = PAGE_DATA[page];
+    document.getElementById("eyebrow").textContent  = data.eyebrow || "";
+    document.getElementById("subtitle").textContent = data.subtitle || "";
+    document.getElementById("slot").innerHTML       = data.slot || "";
+  }
+
+  function pageFromHash() {
+    const h = (location.hash || "#home").replace(/^#/, "");
+    return PAGES.includes(h) ? h : "home";
+  }
+
+  function go(delta) {
+    const i = PAGES.indexOf(pageFromHash());
+    const next = PAGES[(i + delta + PAGES.length) % PAGES.length];
+    location.hash = "#" + next;
+  }
+
+  window.addEventListener("hashchange", () => setPage(pageFromHash()));
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowRight") { e.preventDefault(); go(+1); }
+    if (e.key === "ArrowLeft")  { e.preventDefault(); go(-1); }
   });
+
+  renderLaurels();
+  if (!location.hash) location.replace("#home");
+  setPage(pageFromHash());
 </script>
 </body>
 </html>
