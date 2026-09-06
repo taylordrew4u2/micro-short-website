@@ -167,7 +167,7 @@ Oswald (300, 400, 500, 600, 700)
 
 ---
 
-## Festival Laurels (10 total)
+## Festival Laurels (11 total)
 All laurels have transparent backgrounds (black removed via threshold processing). Each links to the festival's FilmFreeway page.
 
 | # | File | Festival | Award | FilmFreeway URL |
@@ -178,10 +178,11 @@ All laurels have transparent backgrounds (black removed via threshold processing
 | 4 | `altff-director.png` | AltFF Alternative Film Festival | Best Director Nominee 2026 | filmfreeway.com/AltFFAlternativeFilmFestival |
 | 5 | `altff-selection.png` | AltFF Alternative Film Festival | Official Selection 2026 | filmfreeway.com/AltFFAlternativeFilmFestival |
 | 6 | `east-village.png` | East Village New York Film Festival | Official Selection 2026 | filmfreeway.com/EastVillageNewYorkFilmFestival |
-| 7 | `giggle-shitz.png` | Giggle Shitz Film Festival | Official Selection | filmfreeway.com/GiggleShitzFilmFestival |
-| 8 | `lic-cinematographer.png` | Long Island Cinema Festival | Best Cinematographer 2026 | filmfreeway.com/LongIslandCinemaFestival |
-| 9 | `lic-micro-short-nominee.png` | Long Island Cinema Festival | Best Micro Short Nominee 2026 | filmfreeway.com/LongIslandCinemaFestival |
-| 10 | `lic-official-selection.png` | Long Island Cinema Festival | Official Selection 2026 | filmfreeway.com/LongIslandCinemaFestival |
+| 7 | `empire-state.png` | Empire State Film Festival | Official Selection 2026 | filmfreeway.com/Empirestatefilmfestival |
+| 8 | `giggle-shitz.png` | Giggle Shitz Film Festival | Official Selection | filmfreeway.com/GiggleShitzFilmFestival |
+| 9 | `lic-cinematographer.png` | Long Island Cinema Festival | Best Cinematographer 2026 | filmfreeway.com/LongIslandCinemaFestival |
+| 10 | `lic-micro-short-nominee.png` | Long Island Cinema Festival | Best Micro Short Nominee 2026 | filmfreeway.com/LongIslandCinemaFestival |
+| 11 | `lic-official-selection.png` | Long Island Cinema Festival | Official Selection 2026 | filmfreeway.com/LongIslandCinemaFestival |
 
 ---
 
@@ -197,7 +198,7 @@ All laurels have transparent backgrounds (black removed via threshold processing
 | `stills/still-contact.png` | Close-up — car door, woman's face | Contact |
 
 ### Laurels
-All in `laurels/` folder — 10 PNG files with transparent backgrounds (see table above).
+All in `laurels/` folder — 11 PNG files with transparent backgrounds (see table above).
 
 ---
 
@@ -205,7 +206,7 @@ All in `laurels/` folder — 10 PNG files with transparent backgrounds (see tabl
 - `README.md` — This file
 - `Oh Shit Did We Just Kill A Guy.html` — Complete working prototype (single HTML file, hash-routed SPA)
 - `stills/` — 5 background still images
-- `laurels/` — 10 festival laurel images (transparent PNGs)
+- `laurels/` — 11 festival laurel images (transparent PNGs)
 
 ---
 
