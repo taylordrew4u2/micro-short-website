@@ -269,7 +269,8 @@
     left: 0; right: 0;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-auto-rows: 1fr;
+    /* minmax(0,1fr): rows share the fixed canvas height instead of growing past it */
+    grid-auto-rows: minmax(0, 1fr);
     gap: clamp(10px, 2vw, 32px);
     padding: 0 clamp(32px, 6vw, 120px);
     align-items: center;
