@@ -221,20 +221,23 @@
     left:0;right:0;
     display:grid;
     grid-template-columns:repeat(3,1fr);
-    grid-auto-rows:auto;
+    /* minmax(0,1fr): rows share the fixed canvas height instead of growing past it */
+    grid-auto-rows:minmax(0,1fr);
     gap:clamp(10px,2vw,32px);
     padding:0 clamp(32px,6vw,120px);
     align-items:center;justify-items:center;
+    align-content:center;
     flex-wrap:initial;
   }
   body[data-page="awards"] .laurels a{
-    width:100%;
+    width:100%;height:100%;
     display:flex;justify-content:center;align-items:center;
   }
   body[data-page="awards"] .laurels img{
     width:100%;
     max-width:200px;
     height:auto;
+    max-height:100%;
     object-fit:contain;
   }
 
@@ -336,7 +339,9 @@
     { file: "giggle-shitz.png",                alt: "Giggle Shitz Film Festival — Official Selection",        url: "https://filmfreeway.com/GiggleShitzFilmFestival" },
     { file: "lic-cinematographer.png",         alt: "Long Island Cinema Festival — Best Cinematographer 2026", url: "https://filmfreeway.com/LongIslandCinemaFestival" },
     { file: "lic-micro-short-nominee.png",     alt: "Long Island Cinema Festival — Best Micro Short Nominee 2026", url: "https://filmfreeway.com/LongIslandCinemaFestival" },
-    { file: "lic-official-selection.png",      alt: "Long Island Cinema Festival — Official Selection 2026",  url: "https://filmfreeway.com/LongIslandCinemaFestival" }
+    { file: "lic-official-selection.png",      alt: "Long Island Cinema Festival — Official Selection 2026",  url: "https://filmfreeway.com/LongIslandCinemaFestival" },
+    { file: "haha-fest.png",                   alt: "HaHa Fest — Official Selection 2026",                    url: "https://filmfreeway.com/HaHaFest" },
+    { file: "les-lower-east-side.png",         alt: "LES — the Lower East Side Festival of the Arts — Official Selection 2026", url: "https://filmfreeway.com/LESFestivaloftheArts" }
   ];
 
   function rosterHTML(rows) {

@@ -167,7 +167,7 @@ Oswald (300, 400, 500, 600, 700)
 
 ---
 
-## Festival Laurels (11 total)
+## Festival Laurels (13 total)
 All laurels have transparent backgrounds (black removed via threshold processing). Each links to the festival's FilmFreeway page.
 
 | # | File | Festival | Award | FilmFreeway URL |
@@ -183,6 +183,8 @@ All laurels have transparent backgrounds (black removed via threshold processing
 | 9 | `lic-cinematographer.png` | Long Island Cinema Festival | Best Cinematographer 2026 | filmfreeway.com/LongIslandCinemaFestival |
 | 10 | `lic-micro-short-nominee.png` | Long Island Cinema Festival | Best Micro Short Nominee 2026 | filmfreeway.com/LongIslandCinemaFestival |
 | 11 | `lic-official-selection.png` | Long Island Cinema Festival | Official Selection 2026 | filmfreeway.com/LongIslandCinemaFestival |
+| 12 | `haha-fest.png` | HaHa Fest | Official Selection 2026 | filmfreeway.com/HaHaFest |
+| 13 | `les-lower-east-side.png` | LES — the Lower East Side Festival of the Arts | Official Selection 2026 | filmfreeway.com/LESFestivaloftheArts |
 
 ---
 
@@ -198,7 +200,7 @@ All laurels have transparent backgrounds (black removed via threshold processing
 | `stills/still-contact.png` | Close-up — car door, woman's face | Contact |
 
 ### Laurels
-All in `laurels/` folder — 11 PNG files with transparent backgrounds (see table above).
+All in `laurels/` folder — 13 PNG files with transparent backgrounds (see table above).
 
 ---
 
@@ -206,7 +208,7 @@ All in `laurels/` folder — 11 PNG files with transparent backgrounds (see tabl
 - `README.md` — This file
 - `Oh Shit Did We Just Kill A Guy.html` — Complete working prototype (single HTML file, hash-routed SPA)
 - `stills/` — 5 background still images
-- `laurels/` — 11 festival laurel images (transparent PNGs)
+- `laurels/` — 13 festival laurel images (transparent PNGs)
 
 ---
 
