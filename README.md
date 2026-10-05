@@ -6,6 +6,12 @@
 
 ![Home page still: overhead shot of a body on a shopping cart](stills/still-home.png)
 
+## Demo
+
+![Demo: clicking through the Film, Cast, Crew, Awards and Contact views, with stills cross-fading between them](docs/media/demo-desktop.gif)
+
+*Desktop, 1280×800, recorded in headless Chromium.*
+
 ## Overview
 
 The official website for *Oh Shit, Did We Just Kill a Guy?*, a micro short created by Taylor Drew and directed by Oscar Monroy (2026). The site presents the film the way a poster would: one full-bleed frame from the film per page, a single bold title, and the festival laurels the film has earned.
