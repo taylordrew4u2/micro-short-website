@@ -28,7 +28,7 @@
 
 - **A hash router in about 40 lines.** Five views (`#home`, `#cast`, `#crew`, `#awards`, `#contact`) are driven by `hashchange`. Every view is deep-linkable, the back button works, and the arrow keys step through views with modulo wrap-around.
 - **Layout by state, not by script.** `setPage()` writes the current view to `body[data-page]`. The Awards view's entire layout (smaller title, hidden footer, laurel row turned into a 3-column grid) is plain CSS selectors on that attribute.
-- **A grid that never overflows the screen.** The Awards grid uses `grid-auto-rows: minmax(0, 1fr)` with `max-height: 100%` and `object-fit: contain` on the images, so 13 laurels share a fixed canvas height instead of pushing past the viewport.
+- **A grid that never overflows the screen.** The Awards grid uses `grid-auto-rows: minmax(0, 1fr)` with `max-height: 100%` and `object-fit: contain` on the images, so 14 laurels share a fixed canvas height instead of pushing past the viewport.
 - **Cheap cross-fades.** All five stills sit in the DOM as stacked, absolutely positioned layers. Changing views only toggles an `is-active` class, and a 700 ms `opacity` transition (with `will-change: opacity`) does the rest. A gradient plus radial vignette keeps text readable on any frame.
 - **Fluid type with `clamp()`.** The title, nav, laurels and spacing scale between phone and desktop with no breakpoint jumps. Fonts are Anton and Oswald from Google Fonts, with `preconnect` and `display=swap`.
 - **Zero dependencies.** No framework, no build step and no third-party JavaScript. `index.html` is about 14 KB including all CSS and JS. The stills are full-resolution PNGs (the home frame alone is 5.5 MB), which is the clear next target for optimization.
@@ -38,7 +38,7 @@
 - Five views in one page: Film, Cast, Crew, Awards and Contact
 - A full-bleed frame from the film behind each view, cross-fading on navigation
 - Keyboard navigation with the left and right arrow keys
-- 13 festival laurels: a row along the bottom of every view and a full grid on the Awards view, each linking to its festival's FilmFreeway page
+- 14 festival laurels: a row along the bottom of every view and a full grid on the Awards view, each linking to its festival's FilmFreeway page
 - Cast and crew rosters in a two-column grid that collapses to one column on small screens
 - Scroll-free on every screen size: the title wraps on narrow screens and the nav scrolls sideways on phones
 - Description and Open Graph tags for link previews
@@ -98,7 +98,7 @@ Everything lives in `index.html`: a `<style>` block, a fixed markup shell (stage
 ├── index.html                          # The production site
 ├── Oh Shit Did We Just Kill A Guy.html # Original design prototype
 ├── stills/                             # Five full-bleed background frames, one per view
-├── laurels/                            # 13 festival laurels (transparent PNGs)
+├── laurels/                            # 14 festival laurels (transparent PNGs)
 └── docs/media/                         # README demo GIF
 ```
 
