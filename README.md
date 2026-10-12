@@ -38,7 +38,7 @@
 - Five views in one page: Film, Cast, Crew, Awards and Contact
 - A full-bleed frame from the film behind each view, cross-fading on navigation
 - Keyboard navigation with the left and right arrow keys
-- 14 festival laurels: a row along the bottom of every view and a full grid on the Awards view, each linking to its festival's FilmFreeway page
+- 14 festival laurels: a row along the bottom of every view and a full grid on the Awards view, each linking to the film's IMDb page
 - Cast and crew rosters in a two-column grid that collapses to one column on small screens
 - Scroll-free on every screen size: the title wraps on narrow screens and the nav scrolls sideways on phones
 - Description and Open Graph tags for link previews
@@ -123,7 +123,7 @@ The site is deployed on Vercel as a static site. `index.html` sits at the reposi
 
 **Cast:** Taylor Drew (starring), Adiel Kay (starring), Evan Kash (featuring)
 
-**Press and bookings:** [filmfreeway.com/TaylorDrew](https://filmfreeway.com/TaylorDrew)
+**Press and bookings:** [IMDb](https://www.imdb.com/title/tt41152203/)
 
 No license file is included. The film stills and festival laurels belong to their respective owners and are not licensed for reuse.
 
