@@ -15,9 +15,7 @@
 </div>
 
 <p align="center">
-  <img src="docs/media/demo-desktop.gif" alt="Demo: clicking through the Film, Cast, Crew, Awards and Contact views, with stills cross-fading between them" width="800">
-  <br>
-  <sub>Desktop, 1280×800, recorded in headless Chromium.</sub>
+  <a href="https://micro-short-website.vercel.app"><img src="docs/media/screen-home.jpg" alt="Film view: full-bleed still from the film with the title centered and the festival laurel row along the bottom" width="900"></a>
 </p>
 
 ## Why I built it
@@ -43,32 +41,38 @@
 - Scroll-free on every screen size: the title wraps on narrow screens and the nav scrolls sideways on phones
 - Description and Open Graph tags for link previews
 
-## Gallery
+## Screens
 
 <table>
   <tr>
-    <td align="center" colspan="2"><img src="stills/still-home.png" alt="Film view still" width="760"><br><sub>Film</sub></td>
+    <td align="center"><img src="docs/media/screen-awards.jpg" alt="Awards view: laurels laid out as a three-column grid" width="440"><br><sub>Awards</sub></td>
+    <td align="center"><img src="docs/media/screen-cast.jpg" alt="Cast view: two-column roster over a still" width="440"><br><sub>Cast</sub></td>
   </tr>
   <tr>
-    <td align="center"><img src="stills/still-awards.png" alt="Awards view still" width="370"><br><sub>Awards</sub></td>
-    <td align="center"><img src="stills/still-cast.png" alt="Cast view still" height="250"><br><sub>Cast</sub></td>
-  </tr>
-  <tr>
-    <td align="center"><img src="stills/still-crew.png" alt="Crew view still" height="300"><br><sub>Crew</sub></td>
-    <td align="center"><img src="stills/still-contact.png" alt="Contact view still" height="300"><br><sub>Contact</sub></td>
+    <td align="center"><img src="docs/media/screen-crew.jpg" alt="Crew view: crew roster over a still" width="440"><br><sub>Crew</sub></td>
+    <td align="center"><img src="docs/media/screen-contact.jpg" alt="Contact view: IMDb link for press and bookings" width="440"><br><sub>Contact</sub></td>
   </tr>
 </table>
+<p align="center"><sub>Desktop, 1440×900 at 2x, captured in headless Chromium.</sub></p>
+
+### In motion
+
+<p align="center">
+  <img src="docs/media/demo-desktop.gif" alt="Demo: clicking through the Film, Cast, Crew, Awards and Contact views, with stills cross-fading between them" width="800">
+</p>
 
 ### Festival recognition
 
-The laurel images are white on transparent backgrounds, so they are not reproduced here (they disappear on GitHub's light theme). They are visible in the demo above and on the [live site](https://micro-short-website.vercel.app/#awards).
+<p align="center">
+  <img src="docs/media/laurels.png" alt="All 14 festival laurels on a dark background" width="900">
+</p>
 
 | Festival | Recognition |
 |---|---|
 | AltFF Alternative Film Festival | **Winner, Best Writer** (Super Short, Spring 2026) · Best Director Nominee · Official Selection |
 | Long Island Cinema Festival | **Best Micro Short** · **Best Cinematographer** · Best Micro Short Nominee · Official Selection |
 | East Village New York Film Festival | Official Selection |
-| Empire State Film Festival | Official Selection |
+| Empire State Film Festival | Best Micro Short Nominee · Official Selection |
 | The Jersey Devil Film Festival | Official Selection |
 | Giggle Shitz Film Festival | Official Selection |
 | HaHa Fest | Official Selection |
@@ -99,7 +103,7 @@ Everything lives in `index.html`: a `<style>` block, a fixed markup shell (stage
 ├── Oh Shit Did We Just Kill A Guy.html # Original design prototype
 ├── stills/                             # Five full-bleed background frames, one per view
 ├── laurels/                            # 14 festival laurels (transparent PNGs)
-└── docs/media/                         # README demo GIF
+└── docs/media/                         # README screenshots, demo GIF and laurel sheet
 ```
 
 ## Run locally
